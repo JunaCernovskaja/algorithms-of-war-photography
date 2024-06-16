@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Entry</title>
+</head>
+<body>
+    <h1>New Entry</h1>
+    <form method="post" action="{{ url_for('new_entry') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.sum.label }}<br>
+            {{ form.sum(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

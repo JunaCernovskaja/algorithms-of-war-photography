@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Entry</title>
+</head>
+<body>
+    <h1>Update Entry</h1>
+    <form method="post" action="{{ url_for('update', id=id) }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.sum.label }}<br>
+            {{ form.sum(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

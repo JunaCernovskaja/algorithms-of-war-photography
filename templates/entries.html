@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Entries</title>
+</head>
+<body>
+    <h1>Entries</h1>
+    <ul>
+    {% for entry in all_entries %}
+        <li>{{ entry.date }} - {{ entry.sum }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
