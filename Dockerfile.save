@@ -1,0 +1,5 @@
+docker build -t junacernovskaja/algorithms-of-war-photography:latest .
+
+docker tag algorithms-of-war-photography:latest junacernovskaja/algorithms-of-war-photography:latest
+docker push junacernovskaja/algorithms-of-war-photography:latest
+
