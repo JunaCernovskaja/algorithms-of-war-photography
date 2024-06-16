@@ -1,23 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-    <h1>Login</h1>
-    <form method="post" action="{{ url_for('login') }}">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=32) }}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
-        </p>
-        <p>{{ form.remember.label }} {{ form.remember() }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+<form method="POST" action="{{ url_for('users.login') }}">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.email.label }}<br>
+        {{ form.email(size=32) }}<br>
+        {{ form.email.errors }}
+    </div>
+    <div>
+        {{ form.password.label }}<br>
+        {{ form.password(size=32) }}<br>
+        {{ form.password.errors }}
+    </div>
+    <div>
+        {{ form.remember.label }} {{ form.remember() }}
+    </div>
+    <div>
+        <input type="submit" value="Login">
+    </div>
+</form>
+<p>Don't have an account? <a href="{{ url_for('users.register') }}">Register here</a>.</p>
+{% endblock %}

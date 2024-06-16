@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Entry</title>
-</head>
-<body>
-    <h1>New Entry</h1>
-    <form method="post" action="{{ url_for('new_entry') }}">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.sum.label }}<br>
-            {{ form.sum(size=32) }}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}New Entry{% endblock %}
+
+{% block content %}
+<h2>New Entry</h2>
+<form method="POST" action="{{ url_for('entries.new_entry') }}">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.sum.label }}<br>
+        {{ form.sum(size=32) }}<br>
+        {{ form.sum.errors }}
+    </div>
+    <div>
+        {{ form.income.label }}<br>
+        {{ form.income() }}<br>
+        {{ form.income.errors }}
+    </div>
+    <div>
+        <input type="submit" value="Create Entry">
+    </div>
+</form>
+{% endblock %}

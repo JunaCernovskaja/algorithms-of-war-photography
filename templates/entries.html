@@ -1,15 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Entries</title>
-</head>
-<body>
-    <h1>Entries</h1>
-    <ul>
-    {% for entry in all_entries %}
-        <li>{{ entry.date }} - {{ entry.sum }}</li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Entries{% endblock %}
+
+{% block content %}
+<h2>Your Entries</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Income</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in all_entries %}
+        <tr>
+            <td>{{ entry.date }}</td>
+            <td>{{ 'Income' if entry.income else 'Expense' }}</td>
+            <td>{{ entry.sum }}</td>
+            <td>
+                <a href="{{ url_for('entries.update', id=entry.id) }}">Edit</a> |
+                <a href="{{ url_for('entries.delete', id=entry.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
