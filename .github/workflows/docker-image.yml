@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build, Push Docker Image, and Deploy to Heroku
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,9 +22,25 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push
+      - name: Build and push to Docker Hub
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: junacernovskaja/algorithms-of-war-photography:latest
+
+      - name: Log in to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
+
+      - name: Build, push, and release to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          docker build -t registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web .
+          docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+          heroku container:release web --app ${{ secrets.HEROKU_APP_NAME }}
+
+    env:
+      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           
