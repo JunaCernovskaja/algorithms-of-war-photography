@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Update Entry</title>
-</head>
-<body>
-    <h1>Update Entry</h1>
-    <form method="post" action="{{ url_for('update', id=id) }}">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.sum.label }}<br>
-            {{ form.sum(size=32) }}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Update Entry{% endblock %}
+{% block content %}
+<h1>Update Entry</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.description.label }}
+        {{ form.description }}
+    </div>
+    <div>
+        {{ form.amount.label }}
+        {{ form.amount }}
+    </div>
+    <div>
+        {{ form.submit }}
+    </div>
+</form>
+{% endblock %}

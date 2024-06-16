@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All Entries</title>
-</head>
-<body>
-    <h1>All Entries</h1>
-    <ul>
-    {% for entry in all_entries %}
-        <li>{{ entry.date }} - {{ entry.sum }}</li>
+{% extends "base.html" %}
+{% block title %}All Entries{% endblock %}
+{% block content %}
+<h1>All Entries</h1>
+<ul>
+    {% for entry in entries %}
+        <li>{{ entry.date }} - {{ entry.description }} - {{ entry.amount }}</li>
     {% endfor %}
-    </ul>
-</body>
-</html>
+</ul>
+{% endblock %}

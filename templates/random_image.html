@@ -1,8 +1,7 @@
 {% extends "base.html" %}
-
 {% block title %}Random Image{% endblock %}
-
 {% block content %}
-<h2>Random Image</h2>
-<img src="{{ url_for('main.images', filename=filename) }}" alt="Random Image">
+<h1>Random Image</h1>
+<img src="{{ url_for('static', filename='images/' + filename) }}" alt="Random Image">
+<script src="{{ url_for('static', filename='js/track_time.js') }}"></script>
 {% endblock %}

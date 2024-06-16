@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
-    <h1>Welcome to the Flask App</h1>
-    <a href="/random_image">See a random image</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Welcome to War Photography Classification</h1>
+<p>This platform allows you to view and classify war photography images.</p>
+{% endblock %}

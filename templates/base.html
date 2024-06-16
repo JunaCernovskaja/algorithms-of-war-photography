@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Flask App{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{% block title %}War Photography Classification{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <nav>
         <ul>
             <li><a href="{{ url_for('main.index') }}">Home</a></li>
             {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('entries.entries') }}">Entries</a></li>
-                <li><a href="{{ url_for('entries.new_entry') }}">New Entry</a></li>
-                <li><a href="{{ url_for('main.random_image') }}">Random Image</a></li>
                 <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('users.account') }}">Account</a></li>
+                <li><a href="{{ url_for('entries.all_entries') }}">All Entries</a></li>
+                <li><a href="{{ url_for('entries.new_entry') }}">New Entry</a></li>
+                <li><a href="{{ url_for('images.random_image') }}">Random Image</a></li>
             {% else %}
                 <li><a href="{{ url_for('users.login') }}">Login</a></li>
                 <li><a href="{{ url_for('users.register') }}">Register</a></li>
             {% endif %}
         </ul>
     </nav>
-    <div class="container">
+    <div>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="flash {{ category }}">{{ message }}</div>
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
                 {% endfor %}
             {% endif %}
         {% endwith %}

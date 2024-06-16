@@ -20,10 +20,10 @@ def create_app():
 
     from flask_app.routes.main import main
     from flask_app.routes.users import users
-    from flask_app.routes.entries import entries
+    from flask_app.routes.images import images
 
     app.register_blueprint(main)
     app.register_blueprint(users)
-    app.register_blueprint(entries)
+    app.register_blueprint(images)
 
     return app

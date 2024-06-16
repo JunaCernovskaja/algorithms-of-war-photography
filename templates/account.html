@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Account</title>
-</head>
-<body>
-    <h1>Account</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Account{% endblock %}
+{% block content %}
+<h1>Account Details</h1>
+<p>Username: {{ current_user.username }}</p>
+<p>Email: {{ current_user.email }}</p>
+<a href="{{ url_for('users.logout') }}">Logout</a>
+{% endblock %}
