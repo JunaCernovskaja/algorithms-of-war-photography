@@ -1,4 +1,4 @@
-Flask
-Flask-SQLAlchemy
-Flask-Bcrypt
-Flask-Login
+flask
+flask-login
+sqlite3
+requests
